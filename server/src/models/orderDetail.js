@@ -8,25 +8,25 @@ const orderDetail = function (order) {
     this.idPayment = order.idPayment;
 };
 
-// const find_by_name_row_OrderDetail = function (nameRow, value) {
-//   return new Promise((resolve, reject) => {
-//     dbConn.query(
-//       `SELECT * FROM category WHERE ${nameRow} = '${value}'`,
-//       (err, elements) => {
-//         if (err) {
-//           return reject(err);
-//         } else {
-//           return resolve(elements);
-//         }
-//       }
-//     );
-//   });
-// };
+const find_by_idCard_By_idPayorder = function (idPayorder) {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `SELECT idCard FROM webthaotran.carddetail where idPayOrder = ${idPayorder};`,
+            (err, elements) => {
+                if (err) {
+                    return reject(err);
+                } else {
+                    return resolve(elements[0]);
+                }
+            }
+        );
+    });
+};
 
 const find_all_OrderDetail = () => {
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `SELECT * from view_orderdetailjoinuser`,
+            `SELECT * from view_orderdetailjoinuser order by id desc`,
             (error, elements) => {
                 if (error) {
                     return reject(error);
@@ -142,6 +142,6 @@ module.exports = {
     find_sum_monney,
     find_sum_monney_by_day,
     find_sum_countUser,
-    find_sum_countUser,
+    find_by_idCard_By_idPayorder,
     orderDetail,
 };

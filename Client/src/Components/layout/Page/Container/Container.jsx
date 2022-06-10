@@ -15,9 +15,11 @@ const Container = () => {
         productState: { products },
         getProduct,
     } = useContext(ProductContext);
-    useEffect(() => {
-        getProduct();
+
+    useEffect(async () => {
+        await getProduct();
     }, []);
+
     const [show, setShow] = useState(products.slice(0, 20));
     const handChangePage = (page, pageSize) => {
         var start = (page - 1) * pageSize;
@@ -142,7 +144,7 @@ const Container = () => {
                     </div>
                     <div className='content__body'>
                         <div className='grid wide'>
-                            <ListProduct data={show} />
+                            <ListProduct data={show} products={products} />
                             <div className='content__show'>
                                 <Pagination
                                     showSizeChanger={true}

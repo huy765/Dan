@@ -205,10 +205,10 @@ const GetCard_byUserId = function (idUser) {
     });
 };
 
-const UpdateCardDetail = function (quantity, dongia, id) {
+const UpdateCardDetail = function (quantity, sumMoney, id) {
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `Update carddetail SET quantity = '${quantity}',sumMoney = '${dongia}' WHERE (id = '${id}');`,
+            `Update carddetail SET quantity = '${quantity}',sumMoney = '${sumMoney}' WHERE (id = '${id}');`,
             (err, element) => {
                 if (err) {
                     return reject(err);

@@ -38,7 +38,7 @@ const ShowDrawer = ({ input, visible, onClose }) => {
                 <Descriptions.Item label='Giá gốc'>
                     {input.price}
                 </Descriptions.Item>
-                <Descriptions.Item label='Giá khuyến mại'>
+                <Descriptions.Item label='Giảm giá'>
                     {input.promotional}
                 </Descriptions.Item>
             </Descriptions>

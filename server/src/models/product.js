@@ -72,12 +72,15 @@ const find_all_Product_sold = () => {
 
 const find_all_Product = () => {
     return new Promise((resolve, reject) => {
-        dbConn.query(`SELECT * FROM product `, (error, elements) => {
-            if (error) {
-                return reject(error);
+        dbConn.query(
+            `SELECT * FROM product order by id desc`,
+            (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
             }
-            return resolve(elements);
-        });
+        );
     });
 };
 

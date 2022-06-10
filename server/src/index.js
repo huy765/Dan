@@ -7,6 +7,7 @@ const RouterAuth = require("./router/auth");
 const RouterCard = require("./router/card");
 const RouterCategory = require("./router/category");
 const RouterOrder = require("./router/OrderDetail.route");
+const RouterCountOrMonth = require("./router/reportCountOrderYear.route");
 const RouterUnit = require("./router/unit");
 const RouterOrigin = require("./router/origin");
 const RouterImageProduct = require("./router/ImageProduct");
@@ -35,6 +36,7 @@ app.use("/api/card", RouterCard);
 app.use("/api/payment", RouterPayment);
 app.use("/api/Order", RouterOrder);
 app.use("/api/news", Routernews);
+app.use("/api/countOrMonth", RouterCountOrMonth);
 
 app.get("/image/:id", (req, res) => {
     res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));

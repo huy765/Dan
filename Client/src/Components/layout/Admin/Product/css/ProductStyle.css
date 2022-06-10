@@ -13,3 +13,15 @@ span.anticon.anticon-search {
     top: 2px;
     cursor: pointer;
 }
+
+.content-product{
+    position: relative;
+    min-width: 99%;
+}
+
+.content-product .ant-table-body{
+    min-height: 65vh !important;
+}
+.content-product td.ant-table-cell{
+    white-space: break-spaces;
+}

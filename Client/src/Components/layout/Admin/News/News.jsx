@@ -218,7 +218,7 @@ const NewsContent = () => {
     };
     return (
         <>
-            <div className='content'>
+            <div className='content-news'>
                 <Button
                     className='btn-addNew'
                     type='primary'

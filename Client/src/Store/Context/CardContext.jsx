@@ -34,19 +34,6 @@ const CardContextProvider = ({ children }) => {
         } catch (error) {}
     };
 
-    const deleteCard = async (productId) => {
-        try {
-            const response = await axios.delete(
-                `${apiUrl}/product/${productId}`
-            );
-            console.log(response);
-            if (response.data.success)
-                dispatch({ type: DELETE_PRODUCT, payload: productId });
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     const createCard = async (itemCard) => {
         const item = {
             idCard: itemCard.idCard,
@@ -54,7 +41,7 @@ const CardContextProvider = ({ children }) => {
             idCoupon: "",
             dongia: itemCard.dongia,
             quantity: itemCard.quantity,
-            sumMoney: "",
+            sumMoney: itemCard.sumMoney,
         };
         const response = await axios.post(`${apiUrl}/card/addCardItem`, item);
         console.log(response);
@@ -75,9 +62,7 @@ const CardContextProvider = ({ children }) => {
     const cardContextData = {
         cardState,
         getCard,
-        // deleteCard,
         createCard,
-        // updateCard,
         getSumMoneyCard,
     };
 

@@ -15,6 +15,7 @@ const {
     find_sum_monney,
     find_sum_monney_by_day,
     find_sum_countUser,
+    find_by_idCard_By_idPayorder,
     orderDetail,
 } = require("../models/orderDetail");
 const {
@@ -41,6 +42,22 @@ Router.get("/", verifyToken, async (req, res) => {
             return res
                 .status(200)
                 .json({ success: true, user, role: req.role });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+Router.get("/findIdCard/:idPayment", verifyToken, async (req, res) => {
+    try {
+        const idCard = await find_by_idCard_By_idPayorder(req.params.idPayment);
+        if (!idCard) {
+            return res
+                .status(202)
+                .json({ success: false, message: "Không có dữ liệu" });
+        } else {
+            return res.status(200).json({ success: true, value: idCard });
         }
     } catch (error) {
         return res

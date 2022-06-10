@@ -8,6 +8,8 @@ import { CategoryContext } from "../../../../Store/Context/CategoryContext";
 import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
+import "./DrawerAntd/css/style.css";
+
 const CategoryContent = () => {
     const {
         categoryState: { categorys },
@@ -210,7 +212,7 @@ const CategoryContent = () => {
 
     return (
         <>
-            <div className='content'>
+            <div className='content-categoty'>
                 <Button
                     className='btn-addNew'
                     type='primary'

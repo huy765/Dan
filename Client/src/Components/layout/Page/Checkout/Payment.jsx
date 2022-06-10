@@ -12,6 +12,7 @@ import { OrderContext } from "../../../../Store/Context/OrderContext";
 const Payment = () => {
     const history = useHistory();
     const [payment, setPayment] = useState(1);
+    const [description, setDescription] = useState("");
     const {
         cardState: { cards, sumMoney },
         getSumMoneyCard,
@@ -30,6 +31,10 @@ const Payment = () => {
     } = useContext(OrderContext);
 
     const onChange = (e) => {
+        const payment = payments.filter(function (item, index) {
+            return item.id === e.target.value;
+        });
+        setDescription(payment[0].description);
         setPayment(e.target.value);
     };
 
@@ -48,7 +53,6 @@ const Payment = () => {
             sumPayment: sumMoney,
             idPayment: payment,
         };
-        console.log(infoPayment);
         await createOrder(infoPayment);
         history.push({ pathname: "/success", state: { info: infoPayment } });
     };
@@ -234,6 +238,8 @@ const Payment = () => {
                                 </Space>
                             </Radio.Group>
                         </div>
+
+                        <div className='description-payment'>{description}</div>
                     </div>
                 </div>
                 <div className='box-right'>
@@ -305,7 +311,12 @@ const Payment = () => {
                                         right: 0,
                                     }}
                                 >
-                                    {sumMoney !== null ? sumMoney : "0"} đ
+                                    {sumMoney !== null
+                                        ? sumMoney.toLocaleString("vi-VN", {
+                                              style: "currency",
+                                              currency: "VND",
+                                          })
+                                        : "0"}{" "}
                                 </span>
                             </h2>
                             <h2 style={{ margin: 0, position: "relative" }}>
@@ -318,7 +329,7 @@ const Payment = () => {
                                         right: 0,
                                     }}
                                 >
-                                    35000 đ
+                                    35.000 đ
                                 </span>
                             </h2>
 
@@ -332,7 +343,13 @@ const Payment = () => {
                                         right: 0,
                                     }}
                                 >
-                                    {35000 + sumMoney} đ
+                                    {(35000 + sumMoney).toLocaleString(
+                                        "vi-VN",
+                                        {
+                                            style: "currency",
+                                            currency: "VND",
+                                        }
+                                    )}{" "}
                                 </span>
                             </h2>
                         </div>

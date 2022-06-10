@@ -93,3 +93,13 @@
 .title{
     font-size: 25px;
 }
+
+.description-payment{
+    margin-top: 8px;
+    font-size: 20px;
+    width: 389px;
+    color: red;
+    border: 0.5px dotted green;
+    border-radius: 24px;
+    padding: 8px;
+}

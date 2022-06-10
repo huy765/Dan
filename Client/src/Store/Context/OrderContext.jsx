@@ -17,8 +17,18 @@ const OrderContextProvider = ({ children }) => {
     const [orderState, dispatch] = useReducer(orderReducer, InitOrder);
     // Get all CATEGORY
     const getOrder = async () => {
+        var today = new Date();
+
+        var valueToday = today
+            .toLocaleDateString("en-GB")
+            .split("/")
+            .reverse()
+            .join("/");
         try {
             const response = await axios.get(`${apiUrl}/Order/allOrderAdmin`);
+            const datare = await axios.get(
+                "http://localhost:8080/api/countOrMonth/countMonth"
+            );
             const responseMoney = await axios.get(
                 `${apiUrl}/Order/allSummoney`
             );
@@ -26,7 +36,7 @@ const OrderContextProvider = ({ children }) => {
             const responseMoneyDay = await axios.post(
                 `${apiUrl}/Order/allSummoney/day`,
                 {
-                    day: "2022-05-30",
+                    day: valueToday,
                 }
             );
             if (response.data.success) {
@@ -37,6 +47,7 @@ const OrderContextProvider = ({ children }) => {
                         monney: responseMoney.data.monney.summoney,
                         monneyDay: responseMoneyDay.data.monney.summoney,
                         countUser: responseUser.data.countUser.countUser,
+                        countMonth: datare.data.datamonth,
                     },
                 });
             }

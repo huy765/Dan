@@ -7,6 +7,8 @@ import { CardContext } from "../../../../Store/Context/CardContext";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
+import "./css/style.css";
+
 const Cart = () => {
     const history = useHistory();
     const {
@@ -62,7 +64,7 @@ const Cart = () => {
                                                 alt=''
                                             />
                                             <div className='infoProduct'>
-                                                <p className='text-info name-Product'>
+                                                <p className='text-info name-Product-card'>
                                                     {item.nameProduct}
                                                 </p>
                                                 <p className='text-info price-Product'>
@@ -152,7 +154,12 @@ const Cart = () => {
                         <h2>
                             <strong>Tạm tính : </strong>
                             <span style={{ color: "red" }}>
-                                {sumMoney !== null ? sumMoney : "0"}đ
+                                {sumMoney !== null
+                                    ? sumMoney.toLocaleString("vi-VN", {
+                                          style: "currency",
+                                          currency: "VND",
+                                      })
+                                    : "0"}
                             </span>
                         </h2>
                     </div>

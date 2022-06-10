@@ -232,7 +232,10 @@ const ProductContent = () => {
             warranty: product.warranty,
             quantity: product.quantity,
             promotional: product.promotional,
-            price: product.price,
+            price: product.price.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+            }),
             status: product.status,
             image: product.image,
             idCategory: product.idCategory,
@@ -355,7 +358,7 @@ const ProductContent = () => {
     };
     return (
         <>
-            <div className='content'>
+            <div className='content-product'>
                 <Button
                     className='btn-addNew'
                     type='primary'
@@ -372,6 +375,7 @@ const ProductContent = () => {
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 350 }}
+                    style={{ minHeight: "350px !important" }}
                 />
             </div>
             <ShowModalProduct

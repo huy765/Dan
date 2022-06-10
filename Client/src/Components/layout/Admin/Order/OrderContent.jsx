@@ -17,6 +17,7 @@ const OrderContent = () => {
         getOrder,
         updateOrder,
     } = useContext(OrderContext);
+
     useEffect(() => {
         getOrder();
     }, []);
@@ -247,7 +248,7 @@ const OrderContent = () => {
             phone: order.phone,
             state: order.state,
             sumPayment: order.sumPayment,
-            createAt: order.createAt.split("T")[0],
+            createAt: new Date(order.createAt).toLocaleDateString("vn-VN"),
             key: order.id,
         };
     });

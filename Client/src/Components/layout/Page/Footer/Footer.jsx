@@ -130,15 +130,6 @@ function Footer() {
                                     alt=''
                                     className='pay'
                                 />
-                                <h4 className='footer__title sub-title'>
-                                    Dịch vụ giao hàng
-                                </h4>
-                                <a href='#' className='tiki-now'>
-                                    <img
-                                        src='../../../../assets/footer/tikinow.png'
-                                        alt=''
-                                    />
-                                </a>
                             </div>
                             <div className='col l-2-4 m-4 c-6 footer__items download__app'>
                                 <h4 className='footer__title'>

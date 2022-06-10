@@ -1,25 +1,26 @@
 import ReactApexChart from "react-apexcharts";
 import eChart from "./configs/eChart";
-import { Button } from "antd";
 
-function EChart() {
+function EChart({ data }) {
+    const series = [
+        {
+            name: "Doanh số",
+            data: data,
+            color: "#fff",
+        },
+    ];
+
     return (
         <>
             <div style={{ fontSize: 20, marginBottom: 10 }}>
                 Thống kê đơn hàng
-                <Button
-                    style={{ height: 30, marginLeft: 20, alignItems: "center" }}
-                    type={"text"}
-                >
-                    Print
-                </Button>
             </div>
 
             <div id='chart'>
                 <ReactApexChart
                     className='bar-chart'
                     options={eChart.options}
-                    series={eChart.series}
+                    series={series}
                     type='bar'
                     height={420}
                 />

@@ -102,6 +102,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvb
 ################################
 POST http://localhost:8080/api/admin/login
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTE3MjE0MzUsImV4cCI6MTY1MTgwNzgzNX0.f77tpQgEP0cgQzdsQtJOVdM7cSgr_0Z7-w5NRs8Zlyw
 
 {
     "username":"quochuy",
@@ -120,3 +121,9 @@ Content-Type: application/json
 ###
 GET http://localhost:8080/api/ImageProduct/allImage
 Content-Type: application/json
+
+################################
+GET http://localhost:8080/api/Order/findIdCard/37
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTQ2MjkwOTQsImV4cCI6MTY1NDcxNTQ5NH0.J7TUvWl_yhZizv23sXwVCZ2V9UAvU8R7-aLG4jjkUVw
+###

@@ -46,8 +46,14 @@ const orderSuccess = (props) => {
                                 style={{ color: "green" }}
                             >
                                 Bạn vui lòng hãy chuẩn bị số tiền{" "}
-                                {location.state.info.sumPayment} đ để thanh toán
-                                đơn hàng
+                                {location.state.info.sumPayment.toLocaleString(
+                                    "vi-VN",
+                                    {
+                                        style: "currency",
+                                        currency: "VND",
+                                    }
+                                )}{" "}
+                                để thanh toán đơn hàng
                             </p>
                         </div>
                     </div>

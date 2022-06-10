@@ -41,8 +41,6 @@ const CategoryProduct = () => {
     const handleOnclick = (item) => {
         getProductCategory(item.id);
     };
-
-    console.log(products);
     return (
         <>
             <Header />
@@ -104,11 +102,6 @@ const CategoryProduct = () => {
                                         onClick={(event) =>
                                             showModal(event, item.id)
                                         }
-                                        // actions={[
-                                        //   <SettingOutlined key="setting" />,
-                                        //   <EditOutlined key="edit" />,
-                                        //   <EllipsisOutlined key="ellipsis" />,
-                                        // ]}
                                     >
                                         <div className='content__body-item'>
                                             <img

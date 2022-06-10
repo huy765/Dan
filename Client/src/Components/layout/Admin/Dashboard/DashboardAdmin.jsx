@@ -13,11 +13,10 @@ import "./style.css";
 
 function DashboardAdmin() {
     const { Title } = Typography;
-
     const {
-        orderState: { sumMoney, monneyDay, countUser, orders },
+        orderState: { sumMoney, monneyDay, countUser, orders, countMonth },
     } = useContext(OrderContext);
-
+    console.log(countMonth);
     const { getProductSold } = useContext(ProductContext);
 
     useEffect(async () => {
@@ -26,13 +25,15 @@ function DashboardAdmin() {
     }, []);
 
     const [soldProduct, setSoldProduct] = useState([]);
-    const [sheetData, setSheetData] = useState(null);
 
     const dataSource = orders.map((order) => {
         return {
             ["Họ và tên"]: order.fullname,
             ["Số điện thoại"]: order.phone,
-            ["Thành tiền"]: order.sumPayment,
+            ["Thành tiền"]: order.sumPayment.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+            }),
             ["Trạng thái"]: order.state,
             key: order.id,
         };
@@ -42,7 +43,10 @@ function DashboardAdmin() {
             ? soldProduct.map((product) => {
                   return {
                       nameProduct: product.nameProduct,
-                      price: product.price,
+                      price: product.price.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                      }),
                       image: product.image,
                       sold: product.sold,
                       key: product.id,
@@ -77,29 +81,17 @@ function DashboardAdmin() {
     ];
     const profile = [
         <svg
-            width='22'
-            height='22'
-            viewBox='0 0 20 20'
-            fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            key={0}
+            viewBox='0 0 24 24'
+            width='24'
+            height='24'
+            // style={{ backgroundColor: "#ffff" }}
         >
+            <path fill='none' d='M0 0h24v24H0z' />
             <path
-                d='M9 6C9 7.65685 7.65685 9 6 9C4.34315 9 3 7.65685 3 6C3 4.34315 4.34315 3 6 3C7.65685 3 9 4.34315 9 6Z'
+                d='M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h16V5H4zm4.5 9H14a.5.5 0 1 0 0-1h-4a2.5 2.5 0 1 1 0-5h1V6h2v2h2.5v2H10a.5.5 0 1 0 0 1h4a2.5 2.5 0 1 1 0 5h-1v2h-2v-2H8.5v-2z'
                 fill='#fff'
-            ></path>
-            <path
-                d='M17 6C17 7.65685 15.6569 9 14 9C12.3431 9 11 7.65685 11 6C11 4.34315 12.3431 3 14 3C15.6569 3 17 4.34315 17 6Z'
-                fill='#fff'
-            ></path>
-            <path
-                d='M12.9291 17C12.9758 16.6734 13 16.3395 13 16C13 14.3648 12.4393 12.8606 11.4998 11.6691C12.2352 11.2435 13.0892 11 14 11C16.7614 11 19 13.2386 19 16V17H12.9291Z'
-                fill='#fff'
-            ></path>
-            <path
-                d='M6 11C8.76142 11 11 13.2386 11 16V17H1V16C1 13.2386 3.23858 11 6 11Z'
-                fill='#fff'
-            ></path>
+            />
         </svg>,
     ];
     const heart = [
@@ -140,13 +132,22 @@ function DashboardAdmin() {
     const count = [
         {
             today: "Doanh thu",
-            title: sumMoney,
+            title: sumMoney.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+            }),
             icon: dollor,
             bnb: "bnb2",
         },
         {
             today: "Doanh thu trong ngày",
-            title: monneyDay,
+            title:
+                monneyDay !== null
+                    ? monneyDay.toLocaleString("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                      })
+                    : 0,
             icon: profile,
             bnb: "bnb2",
         },
@@ -212,10 +213,19 @@ function DashboardAdmin() {
     ];
 
     const exportToExcel = () => {
+        const data = dataSourceProducts.slice(0, 20).map((item) => {
+            return {
+                ["Mã sản phẩm"]: item.key,
+                ["Tên sản phẩm"]: item.nameProduct,
+                ["Giá Bán"]: item.price,
+                ["Đã bán"]: item.sold,
+            };
+        });
+
         var wb = XLSX.utils.book_new();
-        var ws = XLSX.utils.json_to_sheet(dataSource);
-        XLSX.utils.book_append_sheet(wb, ws), "Thống kê đơn hàng";
-        XLSX.writeFile(wb, "Đơn hàng.xlsx");
+        var ws = XLSX.utils.json_to_sheet(data);
+        XLSX.utils.book_append_sheet(wb, ws), "Sản phẩm bán chạy";
+        XLSX.writeFile(wb, "Sản phẩm bán chạy.xlsx");
     };
 
     return (
@@ -272,7 +282,7 @@ function DashboardAdmin() {
                         className='mb-24'
                     >
                         <Card bordered={false} className='criclebox h-full'>
-                            <Echart />
+                            <Echart data={countMonth} />
                         </Card>
                     </Col>
                     <Col
@@ -319,7 +329,7 @@ function DashboardAdmin() {
                             style={{ minWidth: 819, minHeight: 567 }}
                         >
                             <div style={{ fontSize: 20 }}>
-                                Sản phẩm bán chạy
+                                Top 20 sản phẩm bán chạy
                                 <Button style={{ marginLeft: 15 }}>
                                     <FundOutlined
                                         style={{ marginTop: 6 }}
