@@ -51,10 +51,20 @@ const ListCategory = ({ data, products }) => {
                                       </div>
                                       <div className='slider__content-price'>
                                           <span className='item__price'>
-                                              {item.price} đ
+                                              {item !== undefined
+                                                  ? `${(
+                                                        item.price -
+                                                        (item.price *
+                                                            item.promotional) /
+                                                            100
+                                                    ).toLocaleString("vi-VN", {
+                                                        style: "currency",
+                                                        currency: "VND",
+                                                    })}`
+                                                  : ""}
                                           </span>
                                           <span className='item__discount'>
-                                              -35%
+                                              -{item.promotional}%
                                           </span>
                                       </div>
                                       <img
@@ -101,10 +111,20 @@ const ListCategory = ({ data, products }) => {
                                       </div>
                                       <div className='slider__content-price'>
                                           <span className='item__price'>
-                                              {item.price} đ
+                                              {item !== undefined
+                                                  ? `${(
+                                                        item.price -
+                                                        (item.price *
+                                                            item.promotional) /
+                                                            100
+                                                    ).toLocaleString("vi-VN", {
+                                                        style: "currency",
+                                                        currency: "VND",
+                                                    })}`
+                                                  : ""}
                                           </span>
                                           <span className='item__discount'>
-                                              -35%
+                                              -{item.promotional}%
                                           </span>
                                       </div>
                                       <img

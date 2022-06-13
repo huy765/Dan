@@ -8,6 +8,7 @@ import * as XLSX from "xlsx/xlsx.mjs";
 
 import { SearchOutlined, SmileOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
+import styleTables from "./scss/styleTables.module.scss";
 
 import "./css/OrderStyle.css";
 
@@ -256,18 +257,11 @@ const OrderContent = () => {
     const columns = [
         {
             title: "Người đặt hàng",
-            width: 45,
+            width: 60,
             dataIndex: "fullname",
             key: "fullname",
             fixed: "left",
             ...getColumnSearchProps("fullname"),
-        },
-        {
-            title: "Số điện thoại",
-            dataIndex: "phone",
-            key: "phone",
-            width: 50,
-            ...getColumnSearchProps("phone"),
         },
         {
             title: "Email",
@@ -372,6 +366,7 @@ const OrderContent = () => {
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 445 }}
+                    className={styleTables.custom_information_table}
                 />
             </div>
             <DrawerUpdate

@@ -90,8 +90,18 @@ const find_sum_countUser = () => {
 };
 const find_all_OrderDetail_by_idCustomer = (id) => {
     return new Promise((resolve, reject) => {
+        dbConn.query(`call listProdect_Order(${id})`, (error, elements) => {
+            if (error) {
+                return reject(error);
+            }
+            return resolve(elements);
+        });
+    });
+};
+const find_all_count_Order_Cus = () => {
+    return new Promise((resolve, reject) => {
         dbConn.query(
-            `SELECT * from view_orderdetailjoinuser where idCustomer = ${id}`,
+            `SELECT fullname, count(*) as 'DonHang' FROM webthaotran.orderdetail join user on orderdetail.idCustomer = user.id group by idCustomer order by count(*)  desc;`,
             (error, elements) => {
                 if (error) {
                     return reject(error);
@@ -143,5 +153,6 @@ module.exports = {
     find_sum_monney_by_day,
     find_sum_countUser,
     find_by_idCard_By_idPayorder,
+    find_all_count_Order_Cus,
     orderDetail,
 };

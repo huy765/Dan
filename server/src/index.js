@@ -43,7 +43,7 @@ app.get("/image/:id", (req, res) => {
 });
 app.get("/image/procuct/:id", (req, res) => {
     res.sendFile(
-        path.join(__dirname, `/public/upload/product/${req.params.id}`)
+        path.join(__dirname, `/public/upload/Product/${req.params.id}`)
     );
 });
 app.get("/image/news/:id", (req, res) => {

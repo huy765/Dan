@@ -171,13 +171,7 @@ function App() {
                                                                 Dashboard
                                                             }
                                                         />
-                                                        <ProtectedRoute
-                                                            exact
-                                                            path='/invoiceOrder'
-                                                            component={
-                                                                invoiceOrder
-                                                            }
-                                                        />
+
                                                         <ProtectedRoute
                                                             exact
                                                             path='/dashboardAdmin'
@@ -212,7 +206,7 @@ function App() {
                                                                 CategoryProduct
                                                             }
                                                         />
-                                                        <Route
+                                                        <ProtectedRouteUser
                                                             exact
                                                             path='/searchresult'
                                                             component={
@@ -220,6 +214,13 @@ function App() {
                                                             }
                                                         />
 
+                                                        <Route
+                                                            exact
+                                                            path='/invoice'
+                                                            component={
+                                                                invoiceOrder
+                                                            }
+                                                        />
                                                         <Route
                                                             exact
                                                             path='/about'

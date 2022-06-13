@@ -10,6 +10,7 @@ import ShowDrawerForm from "../LayoutAnt/DrawerCustomer";
 import ShowDrawerCreate from "../LayoutAnt/DrawerCreate";
 
 import "./css/AdminStyle.css";
+import styleTables from "./scss/styleTables.module.scss";
 
 const AdminContent = () => {
     const {
@@ -368,6 +369,7 @@ const AdminContent = () => {
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 350 }}
+                    className={styleTables.custom_information_table}
                 />
             </div>
             <ShowDrawerCreate

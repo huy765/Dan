@@ -68,7 +68,7 @@ const Login = () => {
                     <div className='box-squade' delay='--i:3;'></div>
                     <div className='box-squade' delay='--i:4;'></div>
                     <div className='form-login'>
-                        <h2>Login Form</h2>
+                        <h2 style={{ fontSize: 28 }}>Đăng nhập</h2>
                         <form action='' className='form-input'>
                             <div className='box-input'>
                                 <input

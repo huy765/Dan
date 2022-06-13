@@ -361,7 +361,7 @@ span.user__name {
 }
 .list__category {
   position: relative;
-  margin: 13px 60px;
+  margin: 13px -34px;
   overflow: hidden;
 }
 .list__category-content {

@@ -16,9 +16,8 @@ const Header = () => {
     const { authState, logout } = useContext(AuthContext);
     const [card, setCard] = useState([]);
     const [quantityNum, setQuantityNum] = useState();
-
     //////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////
+    console.log(authState.user[0].idRole);
     const {
         cardState: { cards },
         getCard,
@@ -56,7 +55,6 @@ const Header = () => {
     const handClickReturnHome = async (e) => {
         await getProduct();
         history.push("/");
-        window.location.reload();
     };
     const handNum = async (e, item) => {
         setQuantityNum(e);
@@ -79,8 +77,6 @@ const Header = () => {
     };
 
     const { getProduct } = useContext(ProductContext);
-
-    const handleClickLogo = async () => {};
 
     return (
         <>
@@ -236,7 +232,7 @@ const Header = () => {
                                                     style={{
                                                         margin: "0px 123px",
                                                         color: "#108ee9",
-                                                        fontSize: "17px",
+                                                        fontSize: "16px",
                                                     }}
                                                 >
                                                     Giỏ hàng còn trống
@@ -248,6 +244,11 @@ const Header = () => {
                                         <div className='btn-checkOut'>
                                             <Button
                                                 onClick={handClickCheckOut}
+                                                disabled={
+                                                    cards.length > 0
+                                                        ? false
+                                                        : true
+                                                }
                                                 style={{
                                                     bottom: 15,
                                                     borderRadius: 24,
@@ -288,10 +289,7 @@ const Header = () => {
                                 </span>
                                 <div className='Header__mode-list'>
                                     <ul>
-                                        <li
-                                            href=''
-                                            className='Header__mode-item-link'
-                                        >
+                                        <li className='Header__mode-item-link'>
                                             <Button
                                                 type='text'
                                                 block
@@ -302,10 +300,7 @@ const Header = () => {
                                                 Đơn hàng của tôi
                                             </Button>
                                         </li>
-                                        <li
-                                            href=''
-                                            className='Header__mode-item-link'
-                                        >
+                                        <li className='Header__mode-item-link'>
                                             <Button
                                                 type='text'
                                                 block
@@ -316,10 +311,7 @@ const Header = () => {
                                                 Tài khoản của tôi
                                             </Button>
                                         </li>
-                                        <li
-                                            href=''
-                                            className='Header__mode-item-link'
-                                        >
+                                        <li className='Header__mode-item-link'>
                                             <Button
                                                 type='text'
                                                 block

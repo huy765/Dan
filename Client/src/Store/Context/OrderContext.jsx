@@ -70,20 +70,20 @@ const OrderContextProvider = ({ children }) => {
                 });
             }
         } catch (error) {
-            // dispatch({ type: ORDER_LOADED_FAIL });
+            dispatch({ type: ORDER_LOADED_FAIL });
         }
     };
+    const getCountOrderCustomer = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/Order/countOrderCus`);
 
-    //   const deleteOrder = async (categoryId) => {
-    //     try {
-    //       const response = await axios.delete(`${apiUrl}/category/${categoryId}`);
-    //       console.log(response);
-    //       if (response.data.success)
-    //         dispatch({ type: DELETE_CATEGORY, payload: categoryId });
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   };
+            if (response.data.success) {
+                return response.data.countOrderUser;
+            }
+        } catch (error) {
+            dispatch({ type: ORDER_LOADED_FAIL });
+        }
+    };
 
     const createOrder = async (OrderNew) => {
         const orderDetail = {
@@ -149,6 +149,7 @@ const OrderContextProvider = ({ children }) => {
         createOrder,
         updateOrder,
         getOrderCustomer,
+        getCountOrderCustomer,
     };
 
     return (

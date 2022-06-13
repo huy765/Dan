@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 import { Card, Col, Row, Typography } from "antd";
 import { Table, Button } from "antd";
@@ -13,16 +13,21 @@ import "./style.css";
 
 function DashboardAdmin() {
     const { Title } = Typography;
+    const countOrderCus = useRef([]);
     const {
         orderState: { sumMoney, monneyDay, countUser, orders, countMonth },
+        getCountOrderCustomer,
     } = useContext(OrderContext);
-    console.log(countMonth);
     const { getProductSold } = useContext(ProductContext);
 
     useEffect(async () => {
         const result = await getProductSold();
         setSoldProduct(result);
+        const resultCountOrderCus = await getCountOrderCustomer();
+        countOrderCus.current = resultCountOrderCus;
     }, []);
+
+    console.log(countOrderCus.current);
 
     const [soldProduct, setSoldProduct] = useState([]);
 
@@ -50,6 +55,16 @@ function DashboardAdmin() {
                       image: product.image,
                       sold: product.sold,
                       key: product.id,
+                  };
+              })
+            : "";
+    const datacountOrderCus =
+        countOrderCus.current.length > 0
+            ? countOrderCus.current.map((item, index) => {
+                  return {
+                      fullname: item.fullname,
+                      donhang: item.DonHang,
+                      key: index,
                   };
               })
             : "";
@@ -189,6 +204,20 @@ function DashboardAdmin() {
             dataIndex: "Thành tiền",
             key: "Thành tiền",
             width: "25%",
+        },
+    ];
+    const countOrderCusColums = [
+        {
+            title: "Họ và tên",
+            dataIndex: "fullname",
+            key: "fullname",
+            width: "30%",
+        },
+        {
+            title: "Số đơn hàng",
+            dataIndex: "donhang",
+            key: "donhang",
+            width: "30%",
         },
     ];
     const columnsProducts = [
@@ -363,75 +392,22 @@ function DashboardAdmin() {
                             bordered={false}
                             className='criclebox h-full'
                             style={{ minWidth: 393, minHeight: 567 }}
-                        ></Card>
+                        >
+                            <div style={{ marginTop: 51 }}>
+                                <Table
+                                    key={orders._id}
+                                    size='small'
+                                    bordered={false}
+                                    rowClassName={() => "editable-row"}
+                                    dataSource={datacountOrderCus}
+                                    columns={countOrderCusColums}
+                                    scroll={{ y: 350 }}
+                                    style={{ marginTop: 50 }}
+                                />
+                            </div>
+                        </Card>
                     </Col>
                 </Row>
-
-                {/* <Row gutter={[24, 0]}>
-          <Col xs={24} md={12} sm={24} lg={12} xl={14} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <Row gutter>
-                <Col
-                  xs={24}
-                  md={12}
-                  sm={24}
-                  lg={12}
-                  xl={14}
-                  className="mobile-24"
-                >
-                  <div className="h-full col-content p-20">
-                    <div className="ant-muse">
-                      <Text>Built by developers</Text>
-                      <Title level={5}>Muse Dashboard for Ant Design</Title>
-                      <Paragraph className="lastweek mb-36">
-                        From colors, cards, typography to complex elements, you
-                        will find the full documentation.
-                      </Paragraph>
-                    </div>
-                    <div className="card-footer">
-                      <a className="icon-move-right" href="#pablo">
-                        Read More
-                        {<RightOutlined />}
-                      </a>
-                    </div>
-                  </div>
-                </Col>
-                <Col
-                  xs={24}
-                  md={12}
-                  sm={24}
-                  lg={12}
-                  xl={10}
-                  className="col-img"
-                >
-                  <div className="ant-cret text-right">
-                    <img src={card} alt="" className="border10" />
-                  </div>
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-
-          <Col xs={24} md={12} sm={24} lg={12} xl={10} className="mb-24">
-            <Card bordered={false} className="criclebox card-info-2 h-full">
-              <div className="gradent h-full col-content">
-                <div className="card-content">
-                  <Title level={5}>Work with the best</Title>
-                  <p>
-                    Wealth creation is an evolutionarily recent positive-sum
-                    game. It is all about who take the opportunity first.
-                  </p>
-                </div>
-                <div className="card-footer">
-                  <a className="icon-move-right" href="#pablo">
-                    Read More
-                    <RightOutlined />
-                  </a>
-                </div>
-              </div>
-            </Card>
-          </Col>
-        </Row> */}
             </div>
         </>
     );

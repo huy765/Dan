@@ -2,12 +2,13 @@ import { useContext } from "react";
 
 import SlideSeller from "./SlideStick/SlideSeller";
 import { CategoryContext } from "../../../../Store/Context/CategoryContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Slide = () => {
     const {
         categoryState: { categorys },
     } = useContext(CategoryContext);
+    const history = useHistory();
     return (
         <>
             <div className='slider slider__noTop'>
@@ -22,6 +23,7 @@ const Slide = () => {
                         <img
                             src='../../../image/slider__body/slide-Top/image-1-1.png'
                             alt=''
+                            onClick={(e) => history.push("/pagenew")}
                         />
                     </div>
                     <div className='slider__section2-item'>

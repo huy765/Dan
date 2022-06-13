@@ -16,6 +16,7 @@ const {
     find_sum_monney_by_day,
     find_sum_countUser,
     find_by_idCard_By_idPayorder,
+    find_all_count_Order_Cus,
     orderDetail,
 } = require("../models/orderDetail");
 const {
@@ -187,6 +188,31 @@ Router.get("/countUser", verifyToken, async (req, res) => {
                 });
             } else {
                 return res.status(200).json({ success: true, countUser });
+            }
+        } else {
+            return res.status(405).json({
+                success: false,
+                message: "Tài khoản không được cấp phép",
+            });
+        }
+    } catch (error) {
+        return res
+            .status(500)
+            .json({ success: false, message: "Server Error" });
+    }
+});
+Router.get("/countOrderCus", verifyToken, async (req, res) => {
+    try {
+        if (req.role.nameRole === "Administrators") {
+            const countOrderUser = await find_all_count_Order_Cus();
+
+            if (!countOrderUser) {
+                return res.status(202).json({
+                    success: false,
+                    message: "Không tìm thấy dữ liệu yêu cầu",
+                });
+            } else {
+                return res.status(200).json({ success: true, countOrderUser });
             }
         } else {
             return res.status(405).json({

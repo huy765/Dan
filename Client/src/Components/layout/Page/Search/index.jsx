@@ -42,7 +42,11 @@ const Search = () => {
                             </h4>
                             {searchResult.length > 0 ? (
                                 searchResult.map((result) => (
-                                    <SearchItem key={result.id} data={result} />
+                                    <SearchItem
+                                        key={result.id}
+                                        data={result}
+                                        searchValue={searchValue}
+                                    />
                                 ))
                             ) : (
                                 <></>

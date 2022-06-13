@@ -9,6 +9,7 @@ import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
 import "./DrawerAntd/css/style.css";
+import styleTables from "./scss/styleTables.module.scss";
 
 const CategoryContent = () => {
     const {
@@ -224,8 +225,7 @@ const CategoryContent = () => {
                     Tạo mới
                 </Button>
                 <Table
-                    //   key={users._id}
-                    // components={components}
+                    className={styleTables.custom_information_table}
                     rowClassName={() => "editable-row"}
                     bordered
                     dataSource={dataSource}

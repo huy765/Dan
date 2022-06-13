@@ -167,6 +167,7 @@ const Cart = () => {
                         <Button
                             type='primary'
                             className='btn-pay'
+                            disabled={cards.length > 0 ? false : true}
                             onClick={(e) => history.push("/payment")}
                         >
                             Thanh toán

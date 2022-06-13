@@ -1,21 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-    Descriptions,
-    Badge,
-    Modal,
-    Button,
-    Popconfirm,
-    notification,
-} from "antd";
-import { OrderContext } from "../../../../Store/Context/OrderContext";
-import { SmileOutlined } from "@ant-design/icons";
+import { Descriptions, Badge, Modal, Button, Popconfirm } from "antd";
 import axios from "axios";
 import "./style/myorder.css";
 
 const ModalShow = ({ input, visible, onClose }) => {
     const [listItem, setListItem] = useState();
-
-    const { updateOrderState, getOrderCustomer } = useContext(OrderContext);
     useEffect(async () => {
         const result = await axios.post(
             `http://localhost:8080/api/card/allItemCardOrder`,
@@ -27,30 +16,8 @@ const ModalShow = ({ input, visible, onClose }) => {
         setListItem(result.data.orderPayment);
     }, [input]);
 
-    const cancelOrder = async () => {
-        const inputData = {
-            id: input.id,
-            state: "Đã hủy",
-        };
-        const result = await updateOrderState(inputData);
-        if (result) {
-            getOrderCustomer();
-            notification.open({
-                className: "custom-class",
-                description: "Hủy đơn hàng thành công",
-                icon: <SmileOutlined style={{ color: "#108ee9" }} />,
-            });
-        } else {
-            notification.open({
-                description: "Hủy đơn hàng thất bại",
-                className: "custom-class",
-                style: {
-                    width: 350,
-                    backgroundColor: "#fff2f0",
-                },
-                type: "error",
-            });
-        }
+    const cancelOrder = (input) => {
+        console.log(input);
     };
     return (
         <Modal
@@ -67,7 +34,7 @@ const ModalShow = ({ input, visible, onClose }) => {
                 extra={
                     <Popconfirm
                         title='Hủy đơn hàng ?'
-                        onConfirm={(e) => cancelOrder()}
+                        onConfirm={(e) => cancelOrder(input.id)}
                     >
                         <Button type='primary'>Hủy đơn hàng</Button>
                     </Popconfirm>
@@ -93,7 +60,7 @@ const ModalShow = ({ input, visible, onClose }) => {
                 </Descriptions.Item>
             </Descriptions>
             <Descriptions title='' layout='vertical' bordered>
-                <div class='tbl-content'>
+                {/* <div class='tbl-content'>
                     {listItem !== undefined ? (
                         listItem.map((item) => {
                             return (
@@ -148,7 +115,7 @@ const ModalShow = ({ input, visible, onClose }) => {
                     ) : (
                         <p></p>
                     )}
-                </div>
+                </div> */}
             </Descriptions>
         </Modal>
     );

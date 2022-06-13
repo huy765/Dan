@@ -14,7 +14,7 @@ function Footer() {
                                 </h4>
                                 <p className='hot-line'>
                                     Hotline:
-                                    <a href='tel: 1900-6035'>1900-6035</a>{" "}
+                                    <a href='tel: 1900-6035'>1900-5555</a>{" "}
                                     <br />
                                     (1000 đ/phút, 8-21h kể cả T7, CN)
                                 </p>
@@ -42,18 +42,18 @@ function Footer() {
                                 <p className='footer__links-title'>
                                     Hỗ trợ khách hàng:
                                     <a className='footer__links' href='#'>
-                                        hotro@tiki.vn
+                                        hotro@tranthao.vn
                                     </a>
                                 </p>
                                 <p className='footer__links-title'>
                                     Báo lỗi bảo mật:
                                     <a className='footer__links' href='#'>
-                                        security@tiki.vn
+                                        security@tranthao.vn
                                     </a>
                                 </p>
                             </div>
                             <div className='col l-2-4 m-4 c-6 footer__items'>
-                                <h4 className='footer__title'>Về Tiki</h4>
+                                <h4 className='footer__title'>Về Trần thảo</h4>
                                 <a
                                     href='http://localhost:3000/about'
                                     className='footer__links'
@@ -76,10 +76,10 @@ function Footer() {
                                     Điều khoản sử dụng
                                 </a>
                                 <a href='#' className='footer__links'>
-                                    Giới thiệu Tiki Xu
+                                    Giới thiệu điểm tích lũy
                                 </a>
                                 <a href='#' className='footer__links'>
-                                    Tiếp thị liên kết cùng Tiki
+                                    Tiếp thị liên kết cùng Trần thảo
                                 </a>
                                 <a href='#' className='footer__links'>
                                     Bán hàng doanh nghiệp
@@ -92,9 +92,7 @@ function Footer() {
                                 <a href='' className='footer__links'>
                                     Quy chế hoạt động Sàn GDTMĐT
                                 </a>
-                                <a href='' className='footer__links'>
-                                    Bán hàng cùng Tiki
-                                </a>
+
                                 <h4 className='footer__title sub-title'>
                                     Chứng nhận bởi
                                 </h4>
@@ -172,22 +170,21 @@ function Footer() {
                     </div>
                     <div className='footer__address'>
                         <p className='footer__links-title'>
-                            Địa chỉ văn phòng: 52 Út Tịch, phường 4, quận Tân
-                            Bình, thành phố Hồ Chí Minh
+                            Địa chỉ văn phòng: 32, LK18, KĐT Văn Khê, La Khê, Hà
+                            Đông ,Hà Nội
                         </p>
                         <p className='footer__links-title'>
-                            Tiki nhận đặt hàng trực tuyến và giao hàng tận nơi,
-                            chưa hỗ trợ mua và nhận hàng trực tiếp tại văn phòng
-                            hoặc trung tâm xử lý đơn hàng
+                            Thảo Trần nhận đặt hàng trực tuyến và giao hàng tận
+                            nơi, chưa hỗ trợ mua và nhận hàng trực tiếp tại văn
+                            phòng hoặc trung tâm xử lý đơn hàng
                         </p>
                         <p className='footer__links-title'>
-                            Giấy chứng nhận Đăng ký Kinh doanh số 0309532909 do
-                            Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày
-                            06/01/2010
+                            Giấy chứng nhận Đăng ký Kinh doanh số 4900 260 875
+                            do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày
+                            06/01/2018
                         </p>
                         <p className='footer__links-title'>
-                            © 2021 - Bản quyền của Công Ty Cổ Phần Ti Ki -
-                            Tiki.vn
+                            © 2021 - Bản quyền của Công Ty Cổ Phần Thảo trần
                         </p>
                     </div>
                 </div>

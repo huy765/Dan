@@ -145,7 +145,7 @@ Router.post("/allItemCardOrder", verifyToken, async (req, res) => {
         if (orderPayment.length <= 0) {
             return res.status(202).json({
                 success: true,
-                message: "Giỏ hàng trống",
+                message: "Đơn hàng không có sản phẩm",
                 orderPayment,
             });
         } else {

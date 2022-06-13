@@ -10,6 +10,7 @@ import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
 import "./Antd/css/style.css";
+import styleTables from "./scss/styleTables.module.scss";
 
 const NewsContent = () => {
     const {
@@ -135,7 +136,7 @@ const NewsContent = () => {
         },
         {
             title: "Thao Tác",
-            width: "15%",
+            width: "13%",
             key: "4",
             dataIndex: "operation",
             render: (_, record) =>
@@ -235,6 +236,7 @@ const NewsContent = () => {
                     dataSource={dataSource}
                     columns={columns}
                     scroll={{ y: 350 }}
+                    className={styleTables.custom_information_table}
                 />
             </div>
             <ShowDrawer

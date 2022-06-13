@@ -1,31 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../../Store/Context/AuthContext";
-import { Image } from "antd";
-import { Layout } from "antd";
+import { Layout, Upload } from "antd";
 const { Content } = Layout;
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AuthInfoCustomer from "../../../view/AuthInfoCustomer";
 import Header from "../../../layout/Page/Header/Header";
 
 import "./style.css";
+import styles from "./scss/antd.module.scss";
 
 const MyInfo = () => {
     const { authState } = useContext(AuthContext);
+    const [fileList, setFileList] = useState([]);
+    useEffect(() => {
+        setFileList([
+            {
+                uid: "-1",
+                name: "Avata",
+                status: "done",
+                url: `http://localhost:8080/image/${authState.user[0].nameAvata}`,
+            },
+        ]);
+    }, []);
 
-    const onFinish = (values) => {
-        const userUpdate = {
-            id: values.id,
-            fullname: values.fullname,
-            email: values.email,
-            phone: values.phone,
-            address: values.address,
-            sex: values.sex,
-            dateOfBirth: values.ngaysinh.format("YYYY/MM/DD"),
-        };
-        onUpdate(userUpdate);
+    const onChange = ({ fileList: newFileList }) => {
+        setFileList(newFileList);
     };
-
-    console.log(authState.user[0].dateOfBirth);
 
     return (
         <>
@@ -34,10 +34,16 @@ const MyInfo = () => {
                 <div id='my-info' className='grid wide' style={{}}>
                     <div className='info__header contain'>
                         <div className='header__left'>
-                            <Image
-                                className='avatar'
-                                src={`http://localhost:8080/image/${authState.user[0].nameAvata}`}
-                            />
+                            <Upload
+                                action={`http://localhost:8080/api/upload/image/user/${authState.user[0].id}`}
+                                listType='picture-card'
+                                fileList={fileList}
+                                onChange={onChange}
+                                name='photo'
+                                className='avata'
+                            >
+                                {fileList.length < 1 && "+ Upload"}
+                            </Upload>
                             <div className='left'>
                                 <div className='name'>
                                     Họ và tên: {authState.user[0].fullname}
@@ -62,7 +68,7 @@ const MyInfo = () => {
                             style={{ background: "transparent" }}
                         >
                             <ul id='nav' className='contain'>
-                                <Link to={"/info"} class='nav-item'>
+                                <Link to={"/info"} className='nav-item'>
                                     <div className='content-info-title'>
                                         <div
                                             className='img-info-user'
@@ -123,9 +129,8 @@ const MyInfo = () => {
                                         background: "#b6ccee",
                                         minHeight: 280,
                                         borderRadius: 24,
-                                        background:
-                                            "linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3))",
                                     }}
+                                    className={styles.content_ant_custom}
                                 >
                                     <Route
                                         exact

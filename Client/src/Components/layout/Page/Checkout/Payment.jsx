@@ -12,7 +12,9 @@ import { OrderContext } from "../../../../Store/Context/OrderContext";
 const Payment = () => {
     const history = useHistory();
     const [payment, setPayment] = useState(1);
-    const [description, setDescription] = useState("");
+    const [description, setDescription] = useState(
+        "Khách hàng chuẩn bị khoản tiền tương ứng khi nhận hàng"
+    );
     const {
         cardState: { cards, sumMoney },
         getSumMoneyCard,
@@ -50,7 +52,7 @@ const Payment = () => {
             idCard: user[0].idCard,
             idCustomer: user[0].id,
             address: address,
-            sumPayment: sumMoney,
+            sumPayment: sumMoney + 35000,
             idPayment: payment,
         };
         await createOrder(infoPayment);
@@ -208,7 +210,10 @@ const Payment = () => {
                                     className='price-delivery'
                                     style={{ color: "red" }}
                                 >
-                                    35000 đ
+                                    {(35000).toLocaleString("vi-VN", {
+                                        style: "currency",
+                                        currency: "VND",
+                                    })}
                                 </div>
                             </div>
                         </div>

@@ -9,6 +9,7 @@ import { notification } from "antd";
 import { SmileOutlined } from "@ant-design/icons";
 
 import "./css/style.css";
+import styleTables from "./scss/styleTables.module.scss";
 
 const BrandContent = () => {
     const {
@@ -166,7 +167,7 @@ const BrandContent = () => {
         },
         {
             title: "Thao Tác",
-            width: "9%",
+            width: "10%",
             key: "4",
             dataIndex: "operation",
             render: (_, record) =>
@@ -259,8 +260,7 @@ const BrandContent = () => {
                     Tạo mới
                 </Button>
                 <Table
-                    //   key={users._id}
-                    // components={components}
+                    className={styleTables.custom_information_table}
                     rowClassName={() => "editable-row"}
                     bordered
                     dataSource={dataSource}

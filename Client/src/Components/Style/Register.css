@@ -229,11 +229,12 @@
 }
 
 .title-Form{
-    margin: 0px 235px;
+    margin: 12px 300px;
     margin-top: 12px;
     padding: 0;
     font-weight: bold;
     color: gray;
+    font-size: 26px;
 }
 
 .input-name-left span{

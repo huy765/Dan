@@ -10,6 +10,7 @@ import { SmileOutlined, SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
 
 import "./css/ProductStyle.css";
+import styleTables from "./scss/styleTables.module.scss";
 
 const ProductContent = () => {
     const {
@@ -249,7 +250,7 @@ const ProductContent = () => {
     const columns = [
         {
             title: "Tên sản phẩm",
-            width: 60,
+            width: "50%",
             dataIndex: "nameProduct",
             key: "nameProduct",
             fixed: "left",
@@ -376,6 +377,7 @@ const ProductContent = () => {
                     columns={columns}
                     scroll={{ y: 350 }}
                     style={{ minHeight: "350px !important" }}
+                    className={styleTables.custom_information_table}
                 />
             </div>
             <ShowModalProduct

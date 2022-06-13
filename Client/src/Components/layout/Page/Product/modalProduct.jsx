@@ -97,7 +97,10 @@ const ModalProduct = ({ visible, onClose, product }) => {
                                     ? products.nameProduct
                                     : ""}
                             </h2>
-                            <div className='reviewProduct'>
+                            <div
+                                className='reviewProduct'
+                                style={{ marginTop: 85 }}
+                            >
                                 <div className='review-Damua'>
                                     Đã bán:
                                     {products !== undefined
@@ -107,21 +110,36 @@ const ModalProduct = ({ visible, onClose, product }) => {
                             </div>
 
                             <div className='price-product'>
-                                <div className='origin-price'>
+                                <div
+                                    className='origin-price'
+                                    style={{ fontSize: 15 }}
+                                >
                                     ₫{" "}
                                     {products !== undefined
-                                        ? products.price
+                                        ? products.price.toLocaleString(
+                                              "vi-VN",
+                                              {
+                                                  style: "currency",
+                                                  currency: "VND",
+                                              }
+                                          )
                                         : ""}
                                 </div>
-                                <div className='price-buy'>
+                                <div
+                                    className='price-buy'
+                                    style={{ fontSize: 25 }}
+                                >
                                     ₫
                                     {products !== undefined
-                                        ? `${
+                                        ? `${(
                                               products.price -
                                               (products.price *
                                                   products.promotional) /
                                                   100
-                                          }`
+                                          ).toLocaleString("vi-VN", {
+                                              style: "currency",
+                                              currency: "VND",
+                                          })}`
                                         : ""}
                                 </div>
                                 <div className='discount'>

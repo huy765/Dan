@@ -379,3 +379,7 @@
     min-height: 0;
     background: #f0f2f5;
 }
+
+.header__left .ant-upload-picture-card-wrapper{
+    width: 100px;
+}

@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
-const SearchItem = ({ data }) => {
+const SearchItem = ({ data, searchValue }) => {
+    const handleSelect = (e) => {
+        history.push({ pathname: `/searchresult?search=${searchValue}` });
+    };
+
     return (
         <div className={cx("wapper")}>
-            <Link className={cx("box-item")}>
+            <Link
+                className={cx("box-item")}
+                to={`/searchresult?search=${data.nameProduct}`}
+            >
                 <svg
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 24 24'
