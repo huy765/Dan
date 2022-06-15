@@ -31,12 +31,26 @@ const ShowDrawer = ({ input, visible, onClose }) => {
         setListItem(result.data.orderPayment);
     }, [input]);
     const pdfExportComponent = useRef(null);
-    const handleExportWithComponent = (event) => {
-        pdfExportComponent.current.save();
-    };
+    // const handleExportWithComponent = (event) => {
+    //     pdfExportComponent.current.save();
+    // };
     const handleExport = () => {
         history.push({
             pathname: "/invoice",
+            state: { dataProduct: listItem, dataCus: input },
+        });
+        window.location.reload();
+    };
+    const handleExportInsuance = () => {
+        history.push({
+            pathname: "/InvoiceInsuance",
+            state: { dataProduct: listItem, dataCus: input },
+        });
+        window.location.reload();
+    };
+    const handleExportOutWarehouse = () => {
+        history.push({
+            pathname: "/InvoiceOutWarehouse",
             state: { dataProduct: listItem, dataCus: input },
         });
         window.location.reload();
@@ -169,6 +183,18 @@ const ShowDrawer = ({ input, visible, onClose }) => {
             </Descriptions>
             <div style={{ padding: 10 }}>
                 <Button onClick={handleExport}>Xuất hóa đơn</Button>
+                <Button
+                    style={{ marginLeft: 10 }}
+                    onClick={() => handleExportInsuance()}
+                >
+                    Xuất phiếu bảo hành
+                </Button>
+                <Button
+                    style={{ marginLeft: 10 }}
+                    onClick={() => handleExportOutWarehouse()}
+                >
+                    Tạo phiếu xuất kho
+                </Button>
             </div>
         </Drawer>
     );

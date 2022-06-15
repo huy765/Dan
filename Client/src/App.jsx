@@ -28,6 +28,8 @@ import PageShowResultSearch from "./Components/layout/Page/Search/ViewResultSear
 import News from "./Components/layout/Page/news/News";
 import invoiceOrder from "./Components/layout/Admin/invoice/InvoiceOrder";
 import Insurance from "./Components/layout/Admin/invoice/Insurance";
+import InvoiceInsuance from "./Components/layout/Admin/invoice/InvoiceInsurance";
+import InvoiceOutWarehouse from "./Components/layout/Admin/invoice/InvoiceOutWarehouse";
 import "../public/assets/styles/main.css";
 
 function App() {
@@ -227,6 +229,20 @@ function App() {
                                                             path='/Insurance'
                                                             component={
                                                                 Insurance
+                                                            }
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/InvoiceInsuance'
+                                                            component={
+                                                                InvoiceInsuance
+                                                            }
+                                                        />
+                                                        <Route
+                                                            exact
+                                                            path='/InvoiceOutWarehouse'
+                                                            component={
+                                                                InvoiceOutWarehouse
                                                             }
                                                         />
                                                         <Route

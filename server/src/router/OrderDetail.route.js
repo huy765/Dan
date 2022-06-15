@@ -321,7 +321,7 @@ Router.post("/addOrderPayOnlineDetail", verifyToken, async (req, res) => {
                 sumPayment,
                 address,
                 idPayment,
-                state: "Đang giao hàng",
+                state: "Chờ xác nhận",
             };
             const max_id = await find_max_id();
             const ReIdOrder = await UpdateIdOrder(idCard, max_id.max + 1);

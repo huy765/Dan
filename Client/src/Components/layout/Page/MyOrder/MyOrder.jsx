@@ -49,6 +49,12 @@ const MyOrder = () => {
     const wait =
         orders[0] !== undefined
             ? orders[0].filter(function (order, index) {
+                  return order.state === "Chờ thanh toán";
+              })
+            : "";
+    const waitConfirmation =
+        orders[0] !== undefined
+            ? orders[0].filter(function (order, index) {
                   return order.state === "Chờ xác nhận";
               })
             : "";
@@ -236,7 +242,7 @@ const MyOrder = () => {
                                     <>Chưa có đơn hàng</>
                                 )}
                             </TabPane>
-                            <TabPane tab='Chờ xác nhận' key='2'>
+                            <TabPane tab='Chờ thanh toán' key='2'>
                                 {wait.length > 0 ? (
                                     <ul>
                                         {wait.map((item, index) => {
@@ -377,7 +383,148 @@ const MyOrder = () => {
                                     <>Chưa có đơn hàng</>
                                 )}
                             </TabPane>
-                            <TabPane tab='Đang giao hàng' key='3'>
+                            <TabPane tab='Chờ xác nhận' key='3'>
+                                {waitConfirmation.length > 0 ? (
+                                    <ul>
+                                        {waitConfirmation.map((item, index) => {
+                                            return (
+                                                <li
+                                                    key={item.id}
+                                                    style={{
+                                                        position: "relative",
+                                                        fontSize: 16,
+                                                    }}
+                                                >
+                                                    <div className='item-order'>
+                                                        <div
+                                                            style={{
+                                                                display: "flex",
+                                                                justifyContent:
+                                                                    "space-around",
+                                                            }}
+                                                        >
+                                                            <div
+                                                                style={{
+                                                                    display:
+                                                                        "flex",
+                                                                    flexDirection:
+                                                                        "column",
+                                                                    flex: 2,
+                                                                    marginLeft: 20,
+                                                                    borderLeft:
+                                                                        "1px solid gray",
+                                                                    paddingLeft: 10,
+                                                                }}
+                                                            >
+                                                                <img
+                                                                    src='../../../../../image/header/TN__logo.png'
+                                                                    alt=''
+                                                                    style={{
+                                                                        width: 60,
+                                                                    }}
+                                                                />
+                                                                <div>
+                                                                    Ngày đặt
+                                                                    hàng:{" "}
+                                                                    {new Date(
+                                                                        item.createAt
+                                                                    ).toLocaleDateString(
+                                                                        "vn-VN"
+                                                                    )}
+                                                                    <div>
+                                                                        ID ĐƠN
+                                                                        HÀNG:{" "}
+                                                                        {
+                                                                            item.id
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                style={{
+                                                                    display:
+                                                                        "flex",
+                                                                    flex: "5 1 0",
+                                                                    borderLeft:
+                                                                        "1px solid gray",
+                                                                    paddingLeft: 10,
+                                                                }}
+                                                            >
+                                                                <div>
+                                                                    08:12
+                                                                    13-06-2022
+                                                                    Đơn hàng đã
+                                                                    đến kho
+                                                                    50-HCM Tan
+                                                                    Phu/Tan Quy
+                                                                    SOC
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                style={{
+                                                                    display:
+                                                                        "flex",
+                                                                    flexDirection:
+                                                                        "column",
+                                                                    flex: "3 1 0",
+                                                                    borderLeft:
+                                                                        "1px solid gray",
+                                                                    paddingLeft: 10,
+                                                                }}
+                                                            >
+                                                                <div
+                                                                    style={{
+                                                                        minWidth: 137,
+                                                                    }}
+                                                                >
+                                                                    {/* {item.state} */}
+                                                                    Đơn vị vận
+                                                                    chuyển :{" "}
+                                                                    GHTK
+                                                                </div>
+                                                                <div>
+                                                                    Mã vận đơn :
+                                                                    SPXVN020548129406
+                                                                </div>
+                                                                <div>
+                                                                    Thành tiền:{" "}
+                                                                    {
+                                                                        item.sumPayment
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        style={{
+                                                            position:
+                                                                "relative",
+                                                            minHeight: 50,
+                                                        }}
+                                                    >
+                                                        <Button
+                                                            onClick={(e) =>
+                                                                handleShow(item)
+                                                            }
+                                                            type='primary'
+                                                            style={{
+                                                                position:
+                                                                    "absolute",
+                                                                right: 0,
+                                                            }}
+                                                        >
+                                                            Chi tiết đơn hàng
+                                                        </Button>
+                                                    </div>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                ) : (
+                                    <>Chưa có đơn hàng</>
+                                )}
+                            </TabPane>
+                            <TabPane tab='Đang giao hàng' key='4'>
                                 {delivery.length > 0 ? (
                                     <ul>
                                         {delivery.map((item, index) => {
@@ -518,7 +665,7 @@ const MyOrder = () => {
                                     <>Chưa có đơn hàng</>
                                 )}
                             </TabPane>
-                            <TabPane tab='Đã giao' key='4'>
+                            <TabPane tab='Đã giao' key='5'>
                                 {success.length > 0 ? (
                                     <ul>
                                         {success.map((item, index) => {
@@ -679,7 +826,7 @@ const MyOrder = () => {
                                     <>Chưa có đơn hàng</>
                                 )}
                             </TabPane>
-                            <TabPane tab='Đơn hàng đã hoàn thành' key='5'>
+                            <TabPane tab='Đơn hàng đã hoàn thành' key='6'>
                                 {complete.length > 0 ? (
                                     <ul>
                                         {complete.map((item, index) => {

@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import "../../../Style/orderSuccess.css";
 import Header from "../Header/Header";
-// import { AuthContext } from "../../../Store/Context/AuthContext";
-import { CardContext } from "../../../../Store/Context/CardContext";
 import { useLocation } from "react-router-dom";
 
 const orderSuccess = (props) => {
@@ -27,7 +25,7 @@ const orderSuccess = (props) => {
                                 className='style-font'
                                 style={{
                                     fontWeight: "bold",
-                                    margin: "0 150px",
+                                    margin: "0 290px",
                                     marginBottom: 50,
                                 }}
                             >
@@ -39,7 +37,7 @@ const orderSuccess = (props) => {
                                 className='style-font'
                                 style={{ margin: "0 129px", color: "green" }}
                             >
-                                Xin cảm ơn đã tin tưởng và mua hàng tại Website
+                                Cảm ơn đã bạn tin tưởng và mua hàng tại Website
                             </p>
                             <p
                                 className='style-font'

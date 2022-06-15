@@ -268,7 +268,7 @@ const cal_sum_order_by_id_card = function (idCard) {
 const find_cardDetail_showOrder = function (idCard, idPayOrder) {
     return new Promise((resolve, reject) => {
         dbConn.query(
-            `SELECT product.image, product.nameProduct,product.promotional,product.price, carddetail.quantity FROM carddetail join product on carddetail.idProduct = product.id where idCard = ${idCard} and detailstate = 1 and idPayOrder = ${idPayOrder};`,
+            `SELECT product.image, product.nameProduct,product.promotional,product.price, carddetail.quantity,product.warranty FROM carddetail join product on carddetail.idProduct = product.id where idCard = ${idCard} and detailstate = 1 and idPayOrder = ${idPayOrder};`,
             (error, elements) => {
                 if (error) {
                     return reject(error);

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { NewsContext } from "../../../../Store/Context/NewsContext";
-
+import ModalNews from "./modalNews";
 import Header from "../../../layout/Page/Header/Header";
 import Footer from "../../../layout/Page/Footer/Footer";
 
@@ -14,6 +14,15 @@ const News = () => {
     } = useContext(NewsContext);
     useEffect(() => getNews(), []);
 
+    const [visible, setVisible] = useState(false);
+    const [newsOut, setNewsOut] = useState(false);
+
+    const showModal = (e, id) => {
+        e.preventDefault();
+        setNewsOut(id);
+        setVisible(true);
+    };
+
     return (
         <>
             <Header />
@@ -25,6 +34,7 @@ const News = () => {
                                 <Link
                                     to={`#`}
                                     className='sub__content-type-1 post'
+                                    onClick={(e) => showModal(e, item.id)}
                                 >
                                     <div className='sub__content'>
                                         <div className='sub__content-heading heading'>
@@ -65,6 +75,11 @@ const News = () => {
                 ) : (
                     <></>
                 )}
+                <ModalNews
+                    visible={visible}
+                    onClose={() => setVisible(false)}
+                    news={newsOut}
+                />
             </div>
 
             <Footer />

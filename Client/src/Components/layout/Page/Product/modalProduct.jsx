@@ -24,7 +24,12 @@ const ModalProduct = ({ visible, onClose, product }) => {
     } = useContext(CardContext);
 
     function onChange(value) {
-        setQuantityNum(value);
+        let quanty = +value.target.value;
+        if (quanty > products.quantity) quanty = products.quantity;
+        else if (quanty < 1) quanty = 1;
+
+        console.log(quanty);
+        setQuantityNum(quanty);
     }
 
     useEffect(async () => {
@@ -35,6 +40,7 @@ const ModalProduct = ({ visible, onClose, product }) => {
     }, [product]);
 
     const addToCarthandler = async () => {
+        // console.log(products.quantity);
         const item = {
             idCard: user[0].idCard,
             idProduct: products.id,
@@ -152,12 +158,18 @@ const ModalProduct = ({ visible, onClose, product }) => {
 
                             <div className='qualiti-product'>
                                 <span>Số lượng</span>
-                                <InputNumber
+                                <input
+                                    type={"number"}
+                                    value={quantityNum}
+                                    onChange={onChange}
+                                    style={{ width: 72 }}
+                                />
+                                {/* <InputNumber
                                     min={1}
-                                    max={10}
                                     defaultValue={1}
                                     onChange={onChange}
-                                />
+                                    type={"number"}
+                                /> */}
                                 <span className='avaliable-product'>
                                     {products !== undefined
                                         ? `${products.quantity}`
@@ -195,6 +207,7 @@ const ModalProduct = ({ visible, onClose, product }) => {
                         </div>
                     </div>
                 </div>
+                <strip></strip>
                 <div className='detail-more-Product'>
                     <div className='more-detail'>
                         <h2 className='title-detail'>Chi tiết sản phẩm</h2>
