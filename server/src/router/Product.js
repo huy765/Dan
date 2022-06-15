@@ -12,6 +12,7 @@ const {
     find_view_by_Id,
     find_all_Product_with_name,
     find_all_Product_sold,
+    find_by_IdInvoiceIn,
     Product,
 } = require("../models/product");
 const { find_Emp_by_name_row } = require("../models/Employee");
@@ -126,6 +127,32 @@ Router.get("/findproduct/:id", verifyToken, async (req, res) => {
         });
     }
 });
+
+Router.get("/InvoiceIn/:idInvoiceIn", verifyToken, async (req, res) => {
+    if (req.role.id === 1 || req.role.id === 3) {
+        try {
+            const products = await find_by_IdInvoiceIn(req.params.idInvoiceIn);
+            if (!products) {
+                return res.status(202).json({
+                    success: false,
+                    message: "Không tìm thấy sản phẩm theo chứng từ",
+                });
+            } else {
+                return res.status(200).json({ success: true, products });
+            }
+        } catch (error) {
+            return res
+                .status(500)
+                .json({ success: false, message: "Server Error" });
+        }
+    } else {
+        return res.status(405).json({
+            success: false,
+            message: "Tài khoản không được phép",
+        });
+    }
+});
+
 Router.get("/allProduct", async (req, res) => {
     try {
         const products = await find_all_Product();
@@ -163,6 +190,7 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {
         const {
             price,
+            priceIn,
             nameProduct,
             description,
             warranty,
@@ -170,6 +198,7 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
             promotional,
             status,
             image,
+            idInvoiceIn,
             idCategory,
             idUnit,
             idManufacturer,
@@ -177,18 +206,20 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
         } = req.body;
 
         if (
-            (!price,
+            !price ||
+            !priceIn ||
             !nameProduct ||
-                !description ||
-                !warranty ||
-                !quantity ||
-                !promotional ||
-                !status ||
-                !image ||
-                !idCategory ||
-                !idUnit ||
-                !idManufacturer ||
-                !idOrigin)
+            !description ||
+            !warranty ||
+            !quantity ||
+            !promotional ||
+            !status ||
+            !image ||
+            !idInvoiceIn ||
+            !idCategory ||
+            !idUnit ||
+            !idManufacturer ||
+            !idOrigin
         ) {
             res.status(400).json({
                 success: true,
@@ -208,13 +239,16 @@ Router.post("/addProduct", verifyToken, async (req, res) => {
                 try {
                     const newProductItem = new Product({
                         price,
+                        priceIn,
                         nameProduct,
                         description,
                         warranty,
+                        quantityIn: quantity,
                         quantity,
                         promotional,
                         status,
                         image,
+                        idInvoiceIn,
                         idCategory,
                         idUnit,
                         idManufacturer,

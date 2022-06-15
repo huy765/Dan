@@ -8,10 +8,12 @@ import { AuthContext } from "../../../../Store/Context/AuthContext";
 import { CardContext } from "../../../../Store/Context/CardContext";
 import { PaymentContext } from "../../../../Store/Context/PaymentContext";
 import { OrderContext } from "../../../../Store/Context/OrderContext";
+import PayPal from "../Paypal/PayPal";
 
 const Payment = () => {
     const history = useHistory();
     const [payment, setPayment] = useState(1);
+    const [checkout, setCheckOut] = useState(false);
     const [description, setDescription] = useState(
         "Khách hàng chuẩn bị khoản tiền tương ứng khi nhận hàng"
     );
@@ -58,7 +60,7 @@ const Payment = () => {
         await createOrder(infoPayment);
         history.push({ pathname: "/success", state: { info: infoPayment } });
     };
-
+    console.log(payment);
     return (
         <>
             <Header />
@@ -359,22 +361,49 @@ const Payment = () => {
                             </h2>
                         </div>
                         <div className='btn-action-block'>
-                            <Button
-                                style={{ marginBottom: 20 }}
-                                type='primary'
-                                className='btn-buy'
-                                onClick={(e) =>
-                                    onFinish(
-                                        user[0].fullname,
-                                        user[0].phone,
-                                        user[0].email,
-                                        user[0].address
+                            {payment !== undefined ? (
+                                payment === 4 ? (
+                                    checkout ? (
+                                        <PayPal
+                                            dataInput={{
+                                                sumMoney: sumMoney,
+                                                idPayment: payment,
+                                            }}
+                                        />
+                                    ) : (
+                                        <Button
+                                            style={{ marginBottom: 20 }}
+                                            type='primary'
+                                            className='btn-buy'
+                                            onClick={() => {
+                                                setCheckOut(true);
+                                            }}
+                                        >
+                                            Đặt hàng
+                                        </Button>
                                     )
-                                }
-                            >
-                                Đặt hàng
-                            </Button>
+                                ) : (
+                                    <Button
+                                        style={{ marginBottom: 20 }}
+                                        type='primary'
+                                        className='btn-buy'
+                                        onClick={(e) =>
+                                            onFinish(
+                                                user[0].fullname,
+                                                user[0].phone,
+                                                user[0].email,
+                                                user[0].address
+                                            )
+                                        }
+                                    >
+                                        Đặt hàng
+                                    </Button>
+                                )
+                            ) : (
+                                <></>
+                            )}
                         </div>
+                        <div className='btn-action-block'></div>
                     </div>
                 </div>
             </div>

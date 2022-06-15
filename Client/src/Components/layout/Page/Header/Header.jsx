@@ -17,7 +17,6 @@ const Header = () => {
     const [card, setCard] = useState([]);
     const [quantityNum, setQuantityNum] = useState();
     //////////////////////////////////////////////////////////
-    console.log(authState.user[0].idRole);
     const {
         cardState: { cards },
         getCard,

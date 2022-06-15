@@ -51,6 +51,18 @@ const ProductContextProvider = ({ children }) => {
             return error;
         }
     };
+    const getProductWithIdInvoiceIn = async (idInvoiceIn) => {
+        try {
+            const response = await axios.get(
+                `${apiUrl}/product/InvoiceIn/${idInvoiceIn}`
+            );
+            if (response.data.success) {
+                return response.data.products;
+            }
+        } catch (error) {
+            return error;
+        }
+    };
     const getProductCategory = async (idCategory) => {
         try {
             const response = await axios.get(
@@ -89,11 +101,13 @@ const ProductContextProvider = ({ children }) => {
             promotional: Product.promotional,
             status: Product.status,
             image: Product.image,
+            idInvoiceIn: Product.idInvoiceIn,
             idCategory: Product.idCategory,
             idUnit: Product.idUnit,
             idManufacturer: Product.idManufacturer,
             idOrigin: Product.idOrigin,
             price: Product.price,
+            priceIn: Product.priceIn,
         };
         const response = await axios.post(
             `${apiUrl}/product/addProduct`,
@@ -138,6 +152,7 @@ const ProductContextProvider = ({ children }) => {
         getProductCategory,
         getProductWithName,
         getProductSold,
+        getProductWithIdInvoiceIn,
     };
 
     return (

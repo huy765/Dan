@@ -306,6 +306,62 @@ Router.post("/addOrderDetail", verifyToken, async (req, res) => {
         }
     }
 });
+Router.post("/addOrderPayOnlineDetail", verifyToken, async (req, res) => {
+    const { idCard, idCustomer, sumPayment, idPayment, address } = req.body;
+
+    if (!idCustomer || !sumPayment || !idPayment || !address) {
+        res.status(400).json({
+            success: true,
+            message: "Thiếu thông tin",
+        });
+    } else {
+        try {
+            const newOrderDetail = {
+                idCustomer,
+                sumPayment,
+                address,
+                idPayment,
+                state: "Đang giao hàng",
+            };
+            const max_id = await find_max_id();
+            const ReIdOrder = await UpdateIdOrder(idCard, max_id.max + 1);
+            const Redetailstate = await Updatedetailstate(idCard);
+            const newOrderDetailRe = await InsertOrderDetail(newOrderDetail);
+
+            if (newOrderDetailRe) {
+                const resUpdate = await find_Card_and_detailCard(
+                    idCard,
+                    max_id.max + 1
+                );
+                resUpdate.forEach(async (element) => {
+                    const updateProduct = await UpdateQuantityProduct(
+                        element.idProduct,
+                        element.quantity
+                    );
+                    const soldProduct = await UpdateSoldProduct(
+                        element.idProduct,
+                        element.quantity
+                    );
+                });
+                res.status(200).json({
+                    success: true,
+                    message: "Đặt hàng thành công",
+                    newOrderDetail: newOrderDetailRe,
+                });
+            } else {
+                res.status(400).json({
+                    success: false,
+                    message: "Đặt hàng thất bại",
+                });
+            }
+        } catch (error) {
+            res.status(400).json({
+                success: false,
+                message: "Xảy ra lỗi máy chủ: " + error,
+            });
+        }
+    }
+});
 
 Router.put("/updateState/:id", verifyToken, async (req, res) => {
     if (req.role.id === 1 || req.role.id === 3) {

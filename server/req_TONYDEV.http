@@ -127,3 +127,8 @@ GET http://localhost:8080/api/Order/countOrderCus
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTQ5MTY5NzAsImV4cCI6MTY1NTAwMzM3MH0.TqCkJU3WWuvBXdVa1pnBVUfiMhfcG9KYQaas8vjwh2o
 ###
+################################
+GET http://localhost:8080/api/Product/InvoiceIn/8888
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTUxNzQ3NjIsImV4cCI6MTY1NTI2MTE2Mn0.ICWlwke07RzGYuGxNQNALD5sgwY1iJ85gKf0WhExwrk
+###

@@ -3,6 +3,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Table, Button, Popconfirm, Input, Space, notification } from "antd";
 import ShowModalProduct from "./DrawerAntd/ModalCreate";
 import ShowDrawer from "./DrawerAntd/DrawerProductShow";
+import ShowDrawerInsurance from "./DrawerAntd/ShowDrawerInsurance";
 import ModalUpdateProduct from "./DrawerAntd/ModalUpdateProduct";
 import { ProductContext } from "../../../../Store/Context/ProductContext";
 import axios from "axios";
@@ -23,6 +24,7 @@ const ProductContent = () => {
     useEffect(() => getProduct(), []);
     const [visibleShow, setVisibleShow] = useState(false);
     const [visibleCreate, setVisibleCreate] = useState(false);
+    const [insurance, setInsurance] = useState(false);
     const [visibleUpdate, setVisibleUpdate] = useState(false);
     const [product, setProduct] = useState({});
     const [productEdit, setProductEdit] = useState({});
@@ -152,6 +154,7 @@ const ProductContent = () => {
         setVisibleShow(false);
         setVisibleUpdate(false);
         setVisibleCreate(false);
+        setInsurance(false);
     };
 
     const handleShow = async (record) => {
@@ -233,12 +236,14 @@ const ProductContent = () => {
             warranty: product.warranty,
             quantity: product.quantity,
             promotional: product.promotional,
+            priceIn: product.priceIn,
             price: product.price.toLocaleString("vi-VN", {
                 style: "currency",
                 currency: "VND",
             }),
             status: product.status,
             image: product.image,
+            idInvoiceIn: product.idInvoiceIn,
             idCategory: product.idCategory,
             idUnit: product.idUnit,
             idManufacturer: product.idManufacturer,
@@ -250,17 +255,23 @@ const ProductContent = () => {
     const columns = [
         {
             title: "Tên sản phẩm",
-            width: "50%",
+            width: "45%",
             dataIndex: "nameProduct",
             key: "nameProduct",
             fixed: "left",
             ...getColumnSearchProps("nameProduct"),
         },
         {
+            title: "Giá nhập",
+            dataIndex: "priceIn",
+            key: "priceIn",
+            width: 50,
+        },
+        {
             title: "Giá bán",
             dataIndex: "price",
             key: "price",
-            width: 50,
+            width: 60,
         },
         {
             title: "Trạng thái",
@@ -357,6 +368,9 @@ const ProductContent = () => {
     const handleShowCreate = async () => {
         setVisibleCreate(true);
     };
+    const handleShowInsurance = async () => {
+        setInsurance(true);
+    };
     return (
         <>
             <div className='content-product'>
@@ -369,6 +383,16 @@ const ProductContent = () => {
                     onClick={() => handleShowCreate()}
                 >
                     Tạo mới
+                </Button>
+                <Button
+                    className='btn-addNew'
+                    type='primary'
+                    style={{
+                        marginBottom: 16,
+                    }}
+                    onClick={() => handleShowInsurance()}
+                >
+                    In phiếu nhập kho
                 </Button>
                 <Table
                     rowClassName={() => "editable-row"}
@@ -388,6 +412,11 @@ const ProductContent = () => {
             <ShowDrawer
                 input={product}
                 visible={visibleShow}
+                onClose={onClose}
+            />
+            <ShowDrawerInsurance
+                // input={product}
+                visible={insurance}
                 onClose={onClose}
             />
             <ModalUpdateProduct

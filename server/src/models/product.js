@@ -3,11 +3,14 @@ const Product = function (product) {
     this.nameProduct = product.nameProduct;
     this.description = product.description;
     this.warranty = product.warranty;
+    this.quantityIn = product.quantityIn;
     this.quantity = product.quantity;
     this.price = product.price;
+    this.priceIn = product.priceIn;
     this.promotional = product.promotional;
     this.status = product.status;
     this.image = product.image;
+    this.idInvoiceIn = product.idInvoiceIn;
     this.idCategory = product.idCategory;
     this.idUnit = product.idUnit;
     this.idManufacturer = product.idManufacturer;
@@ -93,6 +96,19 @@ const find_by_Id = (id) => {
                     return reject(error);
                 }
                 return resolve(elements[0]);
+            }
+        );
+    });
+};
+const find_by_IdInvoiceIn = (idInvoiceIn) => {
+    return new Promise((resolve, reject) => {
+        dbConn.query(
+            `SELECT * FROM webthaotran.product where idInvoiceIn = ${idInvoiceIn}`,
+            (error, elements) => {
+                if (error) {
+                    return reject(error);
+                }
+                return resolve(elements);
             }
         );
     });
@@ -210,5 +226,6 @@ module.exports = {
     find_all_Product_with_name,
     UpdateQuantityProduct,
     UpdateSoldProduct,
+    find_by_IdInvoiceIn,
     Product,
 };

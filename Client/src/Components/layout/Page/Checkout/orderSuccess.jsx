@@ -31,7 +31,7 @@ const orderSuccess = (props) => {
                                     marginBottom: 50,
                                 }}
                             >
-                                Chúc mừng bạn đã đặt hàng thành công
+                                Đặt hàng thành công
                             </p>
                         </div>
                         <div>

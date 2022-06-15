@@ -103,6 +103,24 @@ const OrderContextProvider = ({ children }) => {
             return response.data;
         }
     };
+    const createOrderPayOnline = async (OrderNew) => {
+        const orderDetail = {
+            idCard: OrderNew.idCard,
+            idCustomer: OrderNew.idCustomer,
+            sumPayment: OrderNew.sumPayment,
+            address: OrderNew.address,
+            idPayment: OrderNew.idPayment,
+        };
+        const response = await axios.post(
+            `${apiUrl}/Order/addOrderPayOnlineDetail`,
+            orderDetail
+        );
+        if (response.data.success) {
+            return response.data;
+        } else {
+            return response.data;
+        }
+    };
 
     const updateOrder = async (updatedOrder) => {
         try {
@@ -150,6 +168,7 @@ const OrderContextProvider = ({ children }) => {
         updateOrder,
         getOrderCustomer,
         getCountOrderCustomer,
+        createOrderPayOnline,
     };
 
     return (
