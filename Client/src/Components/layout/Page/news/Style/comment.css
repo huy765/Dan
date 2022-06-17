@@ -1,0 +1,11 @@
+.comment    {
+    text-align: center;
+    font-size: 19px;
+}
+.input-comment {
+    display: flex;
+}
+.submit {
+    margin-left: 19px;
+    width: 99px;
+}

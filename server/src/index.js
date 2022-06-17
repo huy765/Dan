@@ -17,6 +17,7 @@ const RouterNewsCategory = require("./router/newsCategory");
 const RouterPayment = require("./router/payment");
 const RouterUpload = require("../Middleware/upload");
 const Routernews = require("./router/news.route");
+const Routerfeedback = require("./router/feedback");
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,7 @@ app.use("/api/payment", RouterPayment);
 app.use("/api/Order", RouterOrder);
 app.use("/api/news", Routernews);
 app.use("/api/countOrMonth", RouterCountOrMonth);
+app.use("/api/feedback", Routerfeedback);
 
 app.get("/image/:id", (req, res) => {
     res.sendFile(path.join(__dirname, `/public/upload/${req.params.id}`));

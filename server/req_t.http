@@ -1,0 +1,17 @@
+#########################
+GET http://localhost:8080/api/feedback/allfeedback
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
+#########################
+DELETE http://localhost:8080/api/feedback/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
+################################
+POST http://localhost:8080/api/feedback/addfeedback
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsInJvbGUiOnsiaWQiOjEsIm5hbWVSb2xlIjoiQWRtaW5pc3RyYXRvcnMiLCJkZXNjcmlwdGlvbiI6IlF1eeG7gW4gY2hvIHF14bqjbiB0cuG7iyB2acOqbiJ9LCJpYXQiOjE2NTIxMDA4ODMsImV4cCI6MTY1MjE4NzI4M30._iRYgZdWN-l3FFNkji2lBW0BeQ8Et3fbuW-nPTQcCIk
+
+{
+    "imageFeedback":"2.ing",
+    "description":"1234TDMT"
+}
+
+###########################
