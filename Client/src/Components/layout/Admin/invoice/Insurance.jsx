@@ -15,7 +15,7 @@ const Insurance = () => {
 
     const dataSourch = listProduct.map((item, index) => {
         return {
-            key: index,
+            key: index + 1,
             nameProduct: item.nameProduct,
             priceIn: item.priceIn,
             quantityIn: item.quantityIn,

@@ -16,10 +16,11 @@ const InvoiceInsuance = () => {
     const [customer, setCustomer] = useState(location.state.dataCus);
 
     const dataSourch = listProduct.map((item, index) => {
+        console.log((item));
         return {
-            key: index,
+            key: index + 1,
             nameProduct: item.nameProduct,
-            warranty: item.promotional,
+            warranty: item.warranty + " Tháng",
             quantity: item.quantity,
             price:
                 (item.price - (item.price * item.promotional) / 100) *

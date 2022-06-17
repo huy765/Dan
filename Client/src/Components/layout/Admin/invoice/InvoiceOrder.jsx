@@ -14,8 +14,9 @@ const invoiceOrder = () => {
     const [listProduct, setListProduct] = useState(location.state.dataProduct);
     const [customer, setCustomer] = useState(location.state.dataCus);
     const dataSourch = listProduct.map((item, index) => {
+        // console.log(item);
         return {
-            key: index,
+            key: index + 1,
             nameProduct: item.nameProduct,
             promotional: item.promotional,
             quantity: item.quantity,
